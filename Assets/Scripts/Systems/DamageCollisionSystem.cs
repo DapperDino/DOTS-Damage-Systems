@@ -7,7 +7,7 @@ using Unity.Physics.Systems;
 
 namespace DapperDino.DamageSystems.Systems
 {
-    [UpdateBefore(typeof(ResolveDamageSystem))]
+    [UpdateBefore(typeof(BlockSystem))]
     public class DamageCollisionSystem : JobComponentSystem
     {
         private BuildPhysicsWorld buildPhysicsWorld;
