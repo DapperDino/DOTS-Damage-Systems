@@ -43,9 +43,12 @@ namespace DapperDino.DamageSystems.Systems
                 {
                     if (damageGroup.Exists(triggerEvent.Entities.EntityB))
                     {
+                        DealDamage dealDamage = dealDamageGroup[triggerEvent.Entities.EntityA];
+
                         damageGroup[triggerEvent.Entities.EntityB].Add(new Damage
                         {
-                            Value = dealDamageGroup[triggerEvent.Entities.EntityA].Value
+                            DamageTypeId = dealDamage.DamageTypeId,
+                            Value = dealDamage.Value
                         });
                     }
                 }
@@ -54,9 +57,12 @@ namespace DapperDino.DamageSystems.Systems
                 {
                     if (damageGroup.Exists(triggerEvent.Entities.EntityA))
                     {
+                        DealDamage dealDamage = dealDamageGroup[triggerEvent.Entities.EntityB];
+
                         damageGroup[triggerEvent.Entities.EntityA].Add(new Damage
                         {
-                            Value = dealDamageGroup[triggerEvent.Entities.EntityB].Value
+                            DamageTypeId = dealDamage.DamageTypeId,
+                            Value = dealDamage.Value
                         });
                     }
                 }

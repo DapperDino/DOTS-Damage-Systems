@@ -21,15 +21,17 @@ namespace DapperDino.DamageSystems.Systems
 
             Entities.WithoutBurst().ForEach((Entity entity, ref Block block, ref DynamicBuffer<Damage> damageBuffer) =>
             {
-                if (damageBuffer.Length == 0) { return; }
-
-                DynamicBuffer<int> damageValueBuffer = damageBuffer.Reinterpret<int>();
-
-                for (int i = 0; i < damageValueBuffer.Length; i++)
+                for (int i = damageBuffer.Length - 1; i >= 0; i--)
                 {
-                    int damageToBlock = math.min(block.Value, damageValueBuffer[i]);
+                    float damageToBlock = math.min(block.Value, damageBuffer[i].Value);
                     block.Value -= damageToBlock;
-                    damageValueBuffer[i] -= damageToBlock;
+
+                    damageBuffer.Insert(i, new Damage
+                    {
+                        DamageTypeId = damageBuffer[i].DamageTypeId,
+                        Value = damageBuffer[i].Value - damageToBlock
+                    });
+                    damageBuffer.RemoveAt(i + 1);
 
                     if (block.Value == 0)
                     {
