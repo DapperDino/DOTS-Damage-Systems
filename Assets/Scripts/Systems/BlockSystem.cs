@@ -23,7 +23,7 @@ namespace DapperDino.DamageSystems.Systems
             {
                 for (int i = damageBuffer.Length - 1; i >= 0; i--)
                 {
-                    float damageToBlock = math.min(block.Value, damageBuffer[i].Value);
+                    int damageToBlock = math.min(block.Value, damageBuffer[i].Value);
                     block.Value -= damageToBlock;
 
                     damageBuffer.Insert(i, new Damage

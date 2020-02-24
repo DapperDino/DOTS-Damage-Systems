@@ -20,7 +20,7 @@ namespace DapperDino.DamageSystems.Systems
                             damageBuffer.Insert(i, new Damage
                             {
                                 DamageTypeId = damageBuffer[i].DamageTypeId,
-                                Value = damageBuffer[i].Value * (1 / resistances[j].Value)
+                                Value = (int)(damageBuffer[i].Value * (1 / resistances[j].Value))
                             });
                             damageBuffer.RemoveAt(i + 1);
 
